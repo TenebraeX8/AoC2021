@@ -1,10 +1,16 @@
 import itertools
 
+buffer = {}
+
 def read_input(nr):
-    lines = []
-    with open(f"input/{nr}.inp") as fp:
-        lines = fp.readlines()
-    return lines
+    if nr in buffer:
+        return buffer[nr]
+    else:
+        lines = []
+        with open(f"input/{nr}.inp") as fp:
+            lines = fp.readlines()
+        buffer[nr] = lines
+        return lines
 
 def read_input_int(nr):
     return [int(x) for x in read_input(nr)]
