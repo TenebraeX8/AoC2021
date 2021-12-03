@@ -1,7 +1,4 @@
-import com.tenebraex8.aoc2021.firstSolution
-import com.tenebraex8.aoc2021.readLines
-import com.tenebraex8.aoc2021.secondSolution
-import java.util.stream.Collectors
+import com.tenebraex8.aoc2021.*
 
 
 val content = "3.inp".readLines()
@@ -9,8 +6,8 @@ val bitArray = Array(content.first().length) { 0 }
 content.forEach {
     for(idx in it.indices) bitArray[idx] += if(it[idx] == '0') -1 else 1
 }
-val gamma = bitArray.map { if(it > 0) "1" else "0" }.stream().collect(Collectors.joining())
-val epsilon = bitArray.map { if(it <= 0) "1" else "0" }.stream().collect(Collectors.joining())
+val gamma = bitArray.map { if(it > 0) "1" else "0" }.collect()
+val epsilon = bitArray.map { if(it <= 0) "1" else "0" }.collect()
 (gamma.toInt(2) * epsilon.toInt(2)).firstSolution()
 
 var oxygen = 0
@@ -22,7 +19,7 @@ for(idx in gamma.indices){
         if(it[idx] == '0') buckets.first.add(it)
         else buckets.second.add(it)
     }
-    remnants = if(buckets.first.size > buckets.second.size) buckets.first.toMutableList() else buckets.second.toMutableList()
+    remnants = if(buckets.first.size > buckets.second.size) buckets.first.copy() else buckets.second.copy()
     if(remnants.size == 1){
         oxygen = remnants.first().toInt(2)
         break

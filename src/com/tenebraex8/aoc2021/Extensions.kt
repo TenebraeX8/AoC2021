@@ -66,6 +66,10 @@ fun <T> List<T>.allElementsEquals(other: List<T>): Boolean{
     return true
 }
 
+fun List<String>.collect(): String = this.joinToString("")
+fun <T> List<T>.copy(): List<T> = this.toMutableList()
+
+
 fun Any.firstSolution(){
     this.doPrintln("Solution for Part 1: ")
 }
