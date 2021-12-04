@@ -33,7 +33,7 @@ for(idx in gamma.indices){
         if(it[idx] == '0') buckets.first.add(it)
         else buckets.second.add(it)
     }
-    remnants = if(buckets.first.size <= buckets.second.size) buckets.first.toMutableList() else buckets.second.toMutableList()
+    remnants = if(buckets.first.size <= buckets.second.size) buckets.first.copy() else buckets.second.copy()
     if(remnants.size == 1){
         scrubber = remnants.first().toInt(2)
         break
