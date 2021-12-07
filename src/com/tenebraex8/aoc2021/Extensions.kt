@@ -77,3 +77,12 @@ fun Any.firstSolution(){
 fun Any.secondSolution(){
     this.doPrintln("Solution for Part 2: ")
 }
+
+fun Iterable<Int>.median(): Double {
+    val sorted = this.sorted()
+    if (sorted.size % 2 == 0) {
+        return ((sorted[sorted.size / 2] + sorted[sorted.size / 2 - 1]) / 2).toDouble()
+    } else {
+        return (sorted[sorted.size / 2]).toDouble()
+    }
+}
