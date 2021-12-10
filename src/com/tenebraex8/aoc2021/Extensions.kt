@@ -80,9 +80,6 @@ fun Any.secondSolution(){
 
 fun Iterable<Int>.median(): Int {
     val sorted = this.sorted()
-    if (sorted.size % 2 == 0) {
-        return ((sorted[sorted.size / 2] + sorted[sorted.size / 2 - 1]) / 2)
-    } else {
-        return (sorted[sorted.size / 2])
-    }
+    return if (sorted.size % 2 == 0) ((sorted[sorted.size / 2] + sorted[sorted.size / 2 - 1]) / 2)
+           else (sorted[sorted.size / 2])
 }
