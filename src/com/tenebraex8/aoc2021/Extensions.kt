@@ -83,3 +83,24 @@ fun Iterable<Int>.median(): Int {
     return if (sorted.size % 2 == 0) ((sorted[sorted.size / 2] + sorted[sorted.size / 2 - 1]) / 2)
            else (sorted[sorted.size / 2])
 }
+
+fun <T: Any> List<List<T>>.adjacents2D(lineIdx: Int, colIdx: Int): List<Pair<Int, Int>>{
+    val indicess = mutableListOf<Pair<Int, Int>>()
+    val leftInBound = this.first().inBounds(colIdx - 1)
+    val rightInBound = this.first().inBounds(colIdx + 1)
+    if(this.inBounds(lineIdx - 1)){
+        if(leftInBound) indicess.add(Pair(lineIdx - 1, colIdx - 1))
+        indicess.add(Pair(lineIdx - 1, colIdx))
+        if(rightInBound) indicess.add(Pair(lineIdx - 1, colIdx + 1))
+    }
+    if(leftInBound) indicess.add(Pair(lineIdx, colIdx - 1))
+    if(rightInBound) indicess.add(Pair(lineIdx, colIdx + 1))
+    if(this.inBounds(lineIdx + 1)){
+        if(leftInBound) indicess.add(Pair(lineIdx + 1, colIdx - 1))
+        indicess.add(Pair(lineIdx + 1, colIdx))
+        if(rightInBound) indicess.add(Pair(lineIdx + 1, colIdx + 1))
+    }
+    return indicess
+}
+
+fun <T: Any> List<List<T>>.pairIdx(idx: Pair<Int, Int>) = this[idx.first][idx.second]

@@ -1,4 +1,3 @@
-import com.tenebraex8.aoc2021.doPrintln
 import com.tenebraex8.aoc2021.firstSolution
 import com.tenebraex8.aoc2021.readLines
 import com.tenebraex8.aoc2021.secondSolution
@@ -41,7 +40,7 @@ input.forEach { line ->
 corruptedScore.firstSolution()
 
 val reverseSoundnessMap = soundnessMap.map { it.value to it.key}.toMap()
-val repairScoreMap = mapOf<Char, Int>(
+val repairScoreMap = mapOf(
     ')' to 1,
     ']' to 2,
     '}' to 3,
