@@ -103,4 +103,24 @@ fun <T: Any> List<List<T>>.adjacents2D(lineIdx: Int, colIdx: Int): List<Pair<Int
     return indicess
 }
 
-fun <T: Any> List<List<T>>.pairIdx(idx: Pair<Int, Int>) = this[idx.first][idx.second]
+fun <T: Any> List<List<T>>.adjacents2DNonDiagonal(lineIdx: Int, colIdx: Int): List<Pair<Int, Int>>{
+    val indicess = mutableListOf<Pair<Int, Int>>()
+    val leftInBound = this.first().inBounds(colIdx - 1)
+    val rightInBound = this.first().inBounds(colIdx + 1)
+    if(this.inBounds(lineIdx - 1)) indicess.add(Pair(lineIdx - 1, colIdx))
+    if(leftInBound) indicess.add(Pair(lineIdx, colIdx - 1))
+    if(rightInBound) indicess.add(Pair(lineIdx, colIdx + 1))
+    if(this.inBounds(lineIdx + 1)) indicess.add(Pair(lineIdx + 1, colIdx))
+    return indicess
+}
+
+
+typealias Index2D = Pair<Int, Int>
+
+fun <T: Any> List<List<T>>.pairIdx(idx: Index2D) = this[idx.first][idx.second]
+fun <T: Any> List<MutableList<T>>.pairAssign(idx: Index2D, value: T){ this[idx.first][idx.second] = value}
+fun <T: Any> List<List<T>>.inBounds(idx: Index2D) = (idx.first in this.indices) && (idx.second in this.first().indices)
+fun <T: Any> List<List<T>>.adjacents2D(idx: Index2D) = this.adjacents2D(idx.first, idx.second)
+fun <T: Any> List<List<T>>.adjacents2DNonDiagonal(idx: Index2D) = this.adjacents2DNonDiagonal(idx.first, idx.second)
+fun Index2D.incX(value: Int = 1) = Pair(this.first, this.second + value)
+fun Index2D.incY(value: Int = 1) = Pair(this.first + value, this.second)
