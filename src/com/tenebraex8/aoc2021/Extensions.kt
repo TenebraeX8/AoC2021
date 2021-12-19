@@ -125,3 +125,9 @@ fun <T: Any> List<List<T>>.adjacents2D(idx: Index2D) = this.adjacents2D(idx.firs
 fun <T: Any> List<List<T>>.adjacents2DNonDiagonal(idx: Index2D) = this.adjacents2DNonDiagonal(idx.first, idx.second)
 fun Index2D.incX(value: Int = 1) = Pair(this.first, this.second + value)
 fun Index2D.incY(value: Int = 1) = Pair(this.first + value, this.second)
+
+
+//Stack
+fun <T> MutableList<T>.push(item: T) = add(item)
+fun <T> MutableList<T>.pop() = if(isNotEmpty()) removeLast() else null
+fun <T> MutableList<T>.peek() = lastOrNull()
