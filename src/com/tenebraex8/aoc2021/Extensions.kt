@@ -115,6 +115,7 @@ fun <T: Any> List<List<T>>.adjacents2DNonDiagonal(lineIdx: Int, colIdx: Int): Li
     return indicess
 }
 
+fun <T> List<T>.skip(elements: Int) = this.subList(elements, this.size)
 
 typealias Index2D = Pair<Int, Int>
 
@@ -126,8 +127,17 @@ fun <T: Any> List<List<T>>.adjacents2DNonDiagonal(idx: Index2D) = this.adjacents
 fun Index2D.incX(value: Int = 1) = Pair(this.first, this.second + value)
 fun Index2D.incY(value: Int = 1) = Pair(this.first + value, this.second)
 
-
 //Stack
 fun <T> MutableList<T>.push(item: T) = add(item)
 fun <T> MutableList<T>.pop() = if(isNotEmpty()) removeLast() else null
 fun <T> MutableList<T>.peek() = lastOrNull()
+
+//Cartesian product
+fun <T> Iterable<T>.foreachCartesian(reflexive: Boolean = false, operation: (T, T)->Unit){
+    this.forEach { outer->
+        this.forEach { inner->
+            if(reflexive || inner != outer)
+                operation.invoke(outer, inner)
+        }
+    }
+}
